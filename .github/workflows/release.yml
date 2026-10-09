@@ -1,9 +1,8 @@
 name: Build and release DailyBot
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [published]
 
 permissions:
   contents: write
