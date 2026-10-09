@@ -31,19 +31,19 @@ class UpdateCheckerTests(unittest.TestCase):
             result = self.make_agent().check_for_updates()
 
         self.assertEqual(result["status"], "update-available")
-        self.assertEqual(result["currentVersion"], "0.3.0")
+        self.assertEqual(result["currentVersion"], "0.3.1")
         self.assertEqual(result["latestVersion"], "0.4.0")
         self.assertEqual(result["releaseUrl"], "https://github.com/Jacob118/Dailybot/releases/tag/v0.4.0")
         self.assertEqual(result["releaseNotes"], "Bug fixes")
         self.assertEqual(urlopen.call_args.kwargs["timeout"], 8)
 
     def test_equal_release_is_reported_as_up_to_date(self):
-        body = json.dumps({"tag_name": "0.3.0", "body": ""}).encode()
+        body = json.dumps({"tag_name": "v0.3.1", "body": ""}).encode()
         with patch.object(app.urllib.request, "urlopen", return_value=FakeResponse(body)):
             result = self.make_agent().check_for_updates()
 
         self.assertEqual(result["status"], "up-to-date")
-        self.assertEqual(result["latestVersion"], "0.3.0")
+        self.assertEqual(result["latestVersion"], "0.3.1")
 
     def test_version_comparison_pads_missing_components(self):
         self.assertEqual(app.version_tuple("v1.2"), app.version_tuple("1.2.0"))
