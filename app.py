@@ -61,7 +61,7 @@ MAX_TOOL_EXPANDED_SIZE = 2 * 1024 * 1024 * 1024
 GITHUB_API = "https://api.github.com/repos/{repo}/releases/latest"
 GITHUB_DOWNLOAD_HOSTS = {"github.com", "release-assets.githubusercontent.com", "objects.githubusercontent.com"}
 DAILYBOT_GITHUB_REPO = "Jacob118/Dailybot"
-APP_VERSION = "0.3.0"
+APP_VERSION = "0.3.1"
 
 
 def now_iso() -> str:
