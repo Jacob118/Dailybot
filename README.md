@@ -4,7 +4,7 @@ DailyBot 是一个运行在本机的二游工具控制台原型。它提供本�
 
 ## 启动
 
-从源码运行需要 Python 3.10 或更新版本。没有安装 pywebview 时会使用系统浏览器；构建环境安装了 pywebview 时会打开桌面窗口。普通用户不应安装 Python；发布给用户时应提供独立的 `DailyBot.exe`。
+从源码运行需要 Python 3.10 或更新版本。没有安装 pywebview 时会使用系统浏览器；构建环境安装了 pywebview 时会打开桌面窗口。普通用户不应安装 Python；发布时提供包含完整运行文件的 Windows 程序包。
 
 当前源码可以在 Windows 双击 `启动 DailyBot.bat`，也可以在项目目录打开终端运行：
 
@@ -22,7 +22,7 @@ python3 app.py
 
 ## 构建 Windows 独立程序
 
-在 Windows x64 的开发电脑上安装 Python 3.10 或更新版本，然后双击 `build-windows.bat`。脚本会安装构建工具并生成 `dist-detection\DailyBot.exe`，其中包含 Python 运行时、桌面窗口组件和网页文件。将这个 exe 发布给用户后，用户无需安装 Python。用户双击 EXE 后会直接打开 DailyBot 桌面窗口，不需要通过浏览器访问。Windows 需要 WebView2 Runtime；如果缺少，需先安装 Microsoft WebView2 Runtime。构建脚本只用于开发和发布，不是用户启动程序的入口。
+在 Windows x64 的开发电脑上安装 Python 3.10 或更新版本，然后双击 `build-windows.bat`。脚本会安装构建工具并生成 `dist-portable\DailyBot\DailyBot.exe` 及其运行文件。为避免单文件程序启动时解压卡住，Windows 版本以完整文件夹打包；移动或发布时必须保留整个 `DailyBot` 文件夹，不能只拿出 exe。用户无需安装 Python，双击文件夹中的 `DailyBot.exe` 即可打开桌面窗口。Windows 需要 WebView2 Runtime；如果缺少，需先安装 Microsoft WebView2 Runtime。构建脚本只用于开发和发布，不是用户启动程序的入口。
 
 ## 连接工具
 
@@ -57,7 +57,7 @@ Agent 只绑定 `127.0.0.1`，不会监听局域网或公网，也不接受云�
 
 ## DailyBot 更新检查
 
-DailyBot 启动时会连接 GitHub 检查自身是否有新版本，也可以点击“检查更新”手动检查。发现新版后会提供 GitHub Release 入口，由用户下载并替换程序；更新检查失败不会影响工具运行。
+DailyBot 启动时会连接 GitHub 检查自身是否有新版本，也可以点击“检查更新”手动检查。发现新版后会提供 GitHub Release 入口。Windows 用户下载 ZIP 后应解压并替换完整的 `DailyBot` 程序文件夹；更新检查失败不会影响工具运行。
 
 ## 当前不包含
 
