@@ -55,11 +55,12 @@ exit /b 1
 :python_found
 "%PYTHON_EXE%" -m pip install -r requirements-build.txt
 if errorlevel 1 goto build_failed
-"%PYTHON_EXE%" -m PyInstaller --noconfirm --clean --onefile --noconsole --name DailyBot --distpath dist-detection --workpath build-detection --add-data "web:web" app.py
+"%PYTHON_EXE%" -m PyInstaller --noconfirm --clean --onedir --noconsole --name DailyBot --distpath dist-portable --workpath build-portable --add-data "web;web" app.py
 if errorlevel 1 goto build_failed
 
 :build_succeeded
-echo Standalone desktop application created at dist-detection\DailyBot.exe
+echo Desktop application created at dist-portable\DailyBot\DailyBot.exe
+echo Keep the complete DailyBot folder together when moving or distributing it.
 pause
 exit /b 0
 
