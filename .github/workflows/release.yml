@@ -27,10 +27,13 @@ jobs:
         run: python -m pip install -r requirements-build.txt
 
       - name: Build DailyBot.exe
-        run: python -m PyInstaller --noconfirm --clean --onefile --noconsole --name DailyBot --distpath dist-detection --workpath build-detection --add-data "web;web" app.py
+        run: python -m PyInstaller --noconfirm --clean --onedir --noconsole --name DailyBot --distpath dist-portable --workpath build-portable --add-data "web;web" app.py
+
+      - name: Package Windows app
+        run: Compress-Archive -Path dist-portable/DailyBot -DestinationPath dist-portable/DailyBot-windows-x64.zip -CompressionLevel Optimal -Force
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist-detection/DailyBot.exe
+          files: dist-portable/DailyBot-windows-x64.zip
           generate_release_notes: true
